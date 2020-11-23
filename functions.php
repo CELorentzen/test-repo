@@ -755,6 +755,7 @@ function twentytwenty_get_elements_array() {
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
 
+//New Custom Post Type
 function create_posttype() {
 
 	register_post_type('medarbejdere',
@@ -763,6 +764,7 @@ function create_posttype() {
 				'name' => __( 'Medarbejdere' ),
 				'singular_name' => __( 'Medarbejder' )
 			),
+
 			//to enable this Post Type in the WordPress Editor, uncomment the Public tag
 			//'public' => true,
 			'show_in_rest' => true,
