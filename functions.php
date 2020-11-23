@@ -754,3 +754,19 @@ function twentytwenty_get_elements_array() {
 	*/
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
+
+function create_posttype() {
+
+	register_post_type('medarbejdere',
+		array(
+			'labels' => array(
+				'name' => __( 'Medarbejdere' ),
+				'singular_name' => __( 'Medarbejder' )
+			),
+			//to enable this Post Type in the WordPress Editor, uncomment the Public tag
+			//'public' => true,
+			'show_in_rest' => true,
+		)
+	);
+}
+ add_action('init','create_posttype');
