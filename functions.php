@@ -761,14 +761,14 @@ function twentytwenty_get_elements_array() {
 	$labels = array(
 		'name'					=> _x( 'medarbejdere', 'post type general name' ),
 		'singular_name'			=> _x( 'medarbejder', 'post type singular name' ),
-		'add_new'				=> _x( 'Tilføj', "medarbejder" ),
+		'add_new'				=> _x( 'Tilføj', 'medarbejder' ),
 		'add_new_item'			=> __( 'Tilføj ny medarbejder' ),
 		'edit_item'				=> __( 'Rediger medarbejder' ),
 		'new_item'				=> __( 'Ny medarbejder' ),
 		'all_items'				=> __( 'Alle medarbejdere' ),
 		'view_item'				=> __( 'Se medarbejder' ),
-		'search_items'			=> __( 'Søg efter medarbejdere'),
-		'not_found'				=> __( 'Ingen medarbejdere fundet'),
+		'search_items'			=> __( 'Søg efter medarbejdere' ),
+		'not_found'				=> __( 'Ingen medarbejdere fundet' ),
 		'not_found_in_trash'	=> __( 'Ingen medarbejdere fundet i Trash' ),
 		'parent_item_colon'		=> '',
 		'menu_name'				=> 'Medarbejdere',
@@ -779,8 +779,9 @@ function twentytwenty_get_elements_array() {
 		'description'			=> 'Medarbejder information',
 		'public'				=> true,
 		'menu_position'			=> 5,
-		'supports'				=> array( 'title', 'editor', 'thumbnail', 'excerpt'),
+		'supports'				=> array( 'title', 'editor', 'thumbnail' ),
 		'has_archive'			=> true,
+		'taxonomies'			=> array( 'category' ),
 	);
 
 	 register_post_type ( 'medarbejder', $args );
