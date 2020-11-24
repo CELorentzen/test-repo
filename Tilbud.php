@@ -1,4 +1,4 @@
-<?php /* Template Name: OPTestTemplate */ ?>
+<?php /* Template Name: OPTilbudTemplate */ ?>
 
 <?php
 include 'header.php';
@@ -21,5 +21,5 @@ include 'header.php';
 
 <?php
 include 'footer.php';
-//get_sidebar( 'content-bottom');
+//get_sidebar( 'content-bottom' );
 ?>
