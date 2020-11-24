@@ -755,20 +755,35 @@ function twentytwenty_get_elements_array() {
 	return apply_filters( 'twentytwenty_get_elements_array', $elements );
 }
 
-//New Custom Post Type
-function create_posttype() {
+ //CPT Medarbejdere
+ function CPT_medarbejdere(){
 
-	register_post_type('medarbejdere',
-		array(
-			'labels' => array(
-				'name' => __( 'Medarbejdere' ),
-				'singular_name' => __( 'Medarbejder' )
-			),
-
-			//to enable this Post Type in the WordPress Editor, uncomment the Public tag
-			//'public' => true,
-			'show_in_rest' => true,
-		)
+	$labels = array(
+		'name'					=> _x( 'medarbejdere', 'post type general name' ),
+		'singular_name'			=> _x( 'medarbejder', 'post type singular name' ),
+		'add_new'				=> _x( 'Tilføj', "medarbejder" ),
+		'add_new_item'			=> __( 'Tilføj ny medarbejder' ),
+		'edit_item'				=> __( 'Rediger medarbejder' ),
+		'new_item'				=> __( 'Ny medarbejder' ),
+		'all_items'				=> __( 'Alle medarbejdere' ),
+		'view_item'				=> __( 'Se medarbejder' ),
+		'search_items'			=> __( 'Søg efter medarbejdere'),
+		'not_found'				=> __( 'Ingen medarbejdere fundet'),
+		'not_found_in_trash'	=> __( 'Ingen medarbejdere fundet i Trash' ),
+		'parent_item_colon'		=> '',
+		'menu_name'				=> 'Medarbejdere',
 	);
-}
- add_action('init','create_posttype');
+
+	$args = array(
+		'labels'				=> $labels,
+		'description'			=> 'Medarbejder information',
+		'public'				=> true,
+		'menu_position'			=> 5,
+		'supports'				=> array( 'title', 'editor', 'thumbnail', 'excerpt'),
+		'has_archive'			=> true,
+	);
+
+	 register_post_type ( 'medarbejder', $args );
+
+ }
+ add_action ( 'init', 'CPT_medarbejdere');
