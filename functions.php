@@ -788,3 +788,20 @@ function twentytwenty_get_elements_array() {
 
  }
  add_action ( 'init', 'CPT_medarbejdere');
+
+ //Here be Dragons!
+
+//Dropdown functionality
+function add_query_vars($afdVars){
+	$afdVars[] = "afdeling_cat";
+	return $afdVars;
+}
+add_filter('query_vars','add_query_vars');
+
+function add_rewrite_rules($afdRules){
+	$afdNewRules = array('medarbejdere/([^/]+)/?$' => 'index.php?pagename=medarbejdere&afdeling_cat=$matches[1]');
+	$afdRules = $afdNewRules + $afdRules;
+	return $afdRules;
+}
+
+add_filter('rewrite_rules_array','add_rewrite_rules');
