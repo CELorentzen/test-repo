@@ -110,7 +110,7 @@ get_header();
                   echo '</ul>';
               } else {
                 //If CPT is empty
-                echo 'Ingen medarbejdere ikke fundet';
+                echo 'Ingen medarbejdere fundet';
               }
               wp_reset_postdata();
             }

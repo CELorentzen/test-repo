@@ -789,8 +789,6 @@ function twentytwenty_get_elements_array() {
  }
  add_action ( 'init', 'CPT_medarbejdere');
 
- //Here be Dragons!
-
 //Dropdown functionality
 
 function afdeling_query_vars($afdVars){
