@@ -14,33 +14,30 @@ get_header();
           get_template_part( 'template-parts/content', 'page');
         endwhile;
         ?>
-        
-    <select name="event-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'> <!--Change page to match selected option-->
-   <!--
-    <form method="GET">
-    <select name="afdeling" onchange='this.form.submit()'>
-    -->
 
-      <option value=""><?php echo esc_attr(__('Vælg Afdeling')); ?></option> 
+        <form method="GET">
+        <select name="afdeling" onchange='this.form.submit()'> <!--Change page to match selected option-->
 
-    <?php 
-        $option = '<option value="' . get_option('home') . '/medarbejdere/">Alle Medarbejdere</option>'; // Change page to default
-        $categories = get_categories(); 
-        foreach ($categories as $category) {
-          $option .= '<option value="'.get_option('home').'/medarbejdere/'.$category->slug.'">';
-          $option .= $category->cat_name;
-          $option .= ' ('.$category->category_count.')';
-          $option .= '</option>';
-        }
-        echo $option;
-    ?>
-</select>
-<!-- </form> -->
+        <option value=""><?php echo esc_attr(__('Vælg Afdeling')); ?></option> 
+
+        <?php 
+            $option = '<option value="all">Alle Medarbejdere</option>'; // Change page to default
+            $categories = get_categories(); 
+            foreach ($categories as $category) {
+              $option .= '<option value="'.$category->slug.'">';
+              $option .= $category->cat_name;
+              $option .= ' ('.$category->category_count.')';
+              $option .= '</option>';
+            }
+            echo $option;
+        ?>
+        </select>
+      </form>
+
         <?php
 
-if(isset($wp_query->query_vars['afdeling_cat'])) {
-  $afdelingCat = urldecode($wp_query->query_vars['afdeling_cat']);
-  }
+        $selAfd = sanitize_text_field( get_query_var('afdeling')); //check URL for appended data
+        
         $args = array(
           'post_type'       => 'medarbejder',
           'posts_per_page'  => -1,
@@ -49,10 +46,11 @@ if(isset($wp_query->query_vars['afdeling_cat'])) {
             array(
               'taxonomy'      => 'category',
               'field'         => 'name',
-              'terms'         => 'salg',
+              'terms'         => $selAfd,
             ),
           ),
         );
+
 
         $workQuery = new WP_Query ( $args );
 
