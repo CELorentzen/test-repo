@@ -62,10 +62,12 @@ get_header();
                 echo '<ul>';
                 while ($workQuery->have_posts() ){
                   $workQuery->the_post();
-                  echo '<li>' . get_the_title() . '</li>';
+                  echo '<div class="medarbejderContainer">';
+                  echo '<p>' . get_the_title() . '</p>';
                   echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
                   echo '<p>' . get_field('stilling', $postID, false) . '</p>';
                   echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+                  echo '</div>';
                 }
                 echo '</ul>';
             } else {
@@ -102,10 +104,12 @@ get_header();
                   echo '<ul>';
                   while ($workQuery->have_posts() ){
                     $workQuery->the_post();
-                    echo '<li>' . get_the_title() . '</li>';
+                    echo '<div class="medarbejderContainer">';
+                    echo '<p>' . get_the_title() . '</p>';
                     echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
                     echo '<p>' . get_field('stilling', $postID, false) . '</p>';
                     echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+                    echo '</div>';
                   }
                   echo '</ul>';
               } else {
