@@ -36,7 +36,7 @@ get_header();
 
         <?php
 
-        $afdelingSelection = sanitize_text_field( get_query_var('afdeling')); //check URL for appended data
+        $afdelingSelection = sanitize_text_field( get_query_var('afdeling')); //Get the appended data from the URL
        
         if (isset($afdelingSelection)){
           
@@ -63,8 +63,8 @@ get_header();
                 while ($workQuery->have_posts() ){
                   $workQuery->the_post();
                   echo '<div class="medarbejderContainer">';
-                  echo '<p>' . get_the_title() . '</p>';
                   echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
+                  echo '<p>' . get_the_title() . '</p>';
                   echo '<p>' . get_field('stilling', $postID, false) . '</p>';
                   echo '<p>' . get_field('telefon', $postID, false) . '</p>';
                   echo '</div>';
@@ -72,7 +72,7 @@ get_header();
                 echo '</ul>';
             } else {
               //If CPT is empty
-              echo 'Ingen medarbejdere ikke fundet';
+              echo 'Ingen medarbejdere fundet';
             }
             wp_reset_postdata();
 
@@ -101,17 +101,19 @@ get_header();
               $workQuery = new WP_Query ( $args );
 
               if ($workQuery->have_posts() ){
+                echo '<div class="loopContainer">';
                   echo '<ul>';
                   while ($workQuery->have_posts() ){
                     $workQuery->the_post();
                     echo '<div class="medarbejderContainer">';
-                    echo '<p>' . get_the_title() . '</p>';
                     echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
+                    echo '<p>' . get_the_title() . '</p>';
                     echo '<p>' . get_field('stilling', $postID, false) . '</p>';
                     echo '<p>' . get_field('telefon', $postID, false) . '</p>';
                     echo '</div>';
                   }
                   echo '</ul>';
+                  echo '</div>';
               } else {
                 //If CPT is empty
                 echo 'Ingen medarbejdere fundet';
