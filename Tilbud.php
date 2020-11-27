@@ -20,6 +20,6 @@ include 'header.php';
 </div>
 
 <?php
+get_sidebar( 'content-bottom' );
 include 'footer.php';
-//get_sidebar( 'content-bottom' );
 ?>

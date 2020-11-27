@@ -16,7 +16,7 @@ get_header();
         ?>
 
         <form method="GET">
-        <select name="afdeling" onchange='this.form.submit()'> <!--Change page to match selected option-->
+        <select name="afdeling" onchange='this.form.submit()'> <!--Append selected option to URL-->
 
         <option value=""><?php echo esc_attr(__('Vælg Afdeling')); ?></option> 
 
@@ -103,17 +103,20 @@ get_header();
               if ($workQuery->have_posts() ){
                 echo '<div class="loopContainer">';
                   echo '<ul>';
-                  while ($workQuery->have_posts() ){
-                    $workQuery->the_post();
-                    echo '<div class="medarbejderContainer">';
-                    echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
-                    echo '<p>' . get_the_title() . '</p>';
-                    echo '<p>' . get_field('stilling', $postID, false) . '</p>';
-                    echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+                    echo '<div class="afdelingInfoBox">';
+                      echo get_the_category(get_the_ID());
                     echo '</div>';
-                  }
+                    while ($workQuery->have_posts() ){
+                      $workQuery->the_post();
+                      echo '<div class="medarbejderContainer">';
+                      echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
+                      echo '<p>' . get_the_title() . '</p>';
+                      echo '<p>' . get_field('stilling', $postID, false) . '</p>';
+                      echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+                      echo '</div>';
+                    }
                   echo '</ul>';
-                  echo '</div>';
+                echo '</div>';
               } else {
                 //If CPT is empty
                 echo 'Ingen medarbejdere fundet';
@@ -131,5 +134,5 @@ get_header();
 
 <?php
 include 'footer.php';
-//get_sidebar( 'content-bottom');
+get_sidebar( 'content-bottom');
 ?>
