@@ -59,17 +59,26 @@ get_header();
             $workQuery = new WP_Query ( $args );
 
             if ($workQuery->have_posts() ){
-                echo '<ul>';
-                while ($workQuery->have_posts() ){
-                  $workQuery->the_post();
-                  echo '<div class="medarbejderContainer">';
-                  echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
-                  echo '<p>' . get_the_title() . '</p>';
-                  echo '<p>' . get_field('stilling', $postID, false) . '</p>';
-                  echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+              echo '<div class="loopContainer">'; //The loopContainer is also the grid container, so it's needed here eventhough the department loop isn't present
+                  echo '<div class="afdelingInfoBox">';
+                    echo 'afdeling';
                   echo '</div>';
-                }
-                echo '</ul>';
+                  while ($workQuery->have_posts() ){
+                    $workQuery->the_post();
+                    echo '<div class="medarbejderContainer" tabindex="0">';
+                      echo '<div class="image">' . get_the_post_thumbnail( get_the_ID(), 'full') . '</div>';
+                      echo '<div class=medarbejderInfo>';
+                        echo '<div class="text title">' . get_the_title() . '</div>';
+                        echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
+                        echo '<div class="hiddenInfo">';
+                          echo '<div class="text">' . get_field('telefon', $postID, false) . '</div>';
+                        echo '</div>';
+                      echo '</div>';
+                    echo '</div>';
+                  }
+
+              echo '</div>';
+
             } else {
               //If CPT is empty
               echo 'Ingen medarbejdere fundet';
@@ -102,20 +111,23 @@ get_header();
 
               if ($workQuery->have_posts() ){
                 echo '<div class="loopContainer">';
-                  echo '<ul>';
                     echo '<div class="afdelingInfoBox">';
-                      echo get_the_category(get_the_ID());
+                      echo 'afdeling';
                     echo '</div>';
                     while ($workQuery->have_posts() ){
                       $workQuery->the_post();
-                      echo '<div class="medarbejderContainer">';
-                      echo '<p>' . get_the_post_thumbnail( get_the_ID(), 'full') . '</p>';
-                      echo '<p>' . get_the_title() . '</p>';
-                      echo '<p>' . get_field('stilling', $postID, false) . '</p>';
-                      echo '<p>' . get_field('telefon', $postID, false) . '</p>';
+                      echo '<div class="medarbejderContainer" tabindex="0">';
+                        echo '<div class="image">' . get_the_post_thumbnail( get_the_ID(), 'full') . '</div>';
+                        echo '<div class=medarbejderInfo>';
+                          echo '<div class="text title">' . get_the_title() . '</div>';
+                          echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
+                          echo '<div class="hiddenInfo">';
+                            echo '<div class="text">' . get_field('telefon', $postID, false) . '</div>';
+                          echo '</div>';
+                        echo '</div>';
                       echo '</div>';
                     }
-                  echo '</ul>';
+
                 echo '</div>';
               } else {
                 //If CPT is empty
