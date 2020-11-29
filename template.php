@@ -15,24 +15,26 @@ get_header();
         endwhile;
         ?>
 
-        <form method="GET">
-        <select name="afdeling" onchange='this.form.submit()'> <!--Append selected option to URL-->
+        <div class="dropdownContainer">
+          <form method="GET">
+          <select name="afdeling" class="dropdownSelector" onchange='this.form.submit()'> <!--Append selected option to URL-->
 
-        <option value=""><?php echo esc_attr(__('Vælg Afdeling')); ?></option> 
+          <option value=""><?php echo esc_attr(__('Vælg Afdeling')); ?></option> 
 
-        <?php 
-            $option = '<option value="all">Alle Medarbejdere</option>'; // Change page to default
-            $afdelinger = get_categories(); 
-            foreach ($afdelinger as $afdeling) {
-              $option .= '<option value="'.$afdeling->slug.'">';
-              $option .= $afdeling->cat_name;
-              $option .= ' ('.$afdeling->category_count.')';
-              $option .= '</option>';
-            }
-            echo $option;
-        ?>
-        </select>
-      </form>
+          <?php 
+              $option = '<option value="all">Alle afdelinger</option>'; // Change page to default
+              $afdelinger = get_categories(); 
+              foreach ($afdelinger as $afdeling) {
+                $option .= '<option value="'.$afdeling->slug.'">';
+                $option .= $afdeling->cat_name;
+                $option .= ' ('.$afdeling->category_count.')';
+                $option .= '</option>';
+              }
+              echo $option;
+          ?>
+          </select>
+          </form>
+        </div>
 
         <?php
 
@@ -66,15 +68,17 @@ get_header();
                   while ($workQuery->have_posts() ){
                     $workQuery->the_post();
                     echo '<div class="medarbejderContainer" tabindex="0">';
+                    echo '<div class="gradientContainer">';
                       echo '<div class="image">' . get_the_post_thumbnail( get_the_ID(), 'full') . '</div>';
-                      echo '<div class=medarbejderInfo>';
-                        echo '<div class="text title">' . get_the_title() . '</div>';
-                        echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
-                        echo '<div class="hiddenInfo">';
-                          echo '<div class="text">' . get_field('telefon', $postID, false) . '</div>';
-                        echo '</div>';
+                    echo '</div>';
+                    echo '<div class=medarbejderInfo>';
+                      echo '<div class="text title">' . get_the_title() . '</div>';
+                      echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
+                      echo '<div class="hiddenInfo">';
+                        echo '<div class="text">' . get_field('telefon', $postID, false) . '</div>';
                       echo '</div>';
                     echo '</div>';
+                  echo '</div>';
                   }
 
               echo '</div>';
@@ -117,12 +121,14 @@ get_header();
                     while ($workQuery->have_posts() ){
                       $workQuery->the_post();
                       echo '<div class="medarbejderContainer" tabindex="0">';
-                        echo '<div class="image">' . get_the_post_thumbnail( get_the_ID(), 'full') . '</div>';
+                        echo '<div class="gradientContainer">';
+                          echo '<div class="image">' . get_the_post_thumbnail( get_the_ID(), 'full') . '</div>';
+                        echo '</div>';
                         echo '<div class=medarbejderInfo>';
                           echo '<div class="text title">' . get_the_title() . '</div>';
                           echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
                           echo '<div class="hiddenInfo">';
-                            echo '<div class="text">' . get_field('telefon', $postID, false) . '</div>';
+                            echo '<div class="text">+45 ' . substr( get_field('telefon', $postID, false),0,4 ) . " " . substr( get_field('telefon', $postID, false),0,4 ) . '</div>';
                           echo '</div>';
                         echo '</div>';
                       echo '</div>';
@@ -146,5 +152,4 @@ get_header();
 
 <?php
 include 'footer.php';
-get_sidebar( 'content-bottom');
 ?>

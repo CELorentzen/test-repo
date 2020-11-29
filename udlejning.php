@@ -1,7 +1,6 @@
 <?php /* Template Name: OPTestTemplate */ ?>
 
 <?php
-//include 'header.php';
 get_header();
 ?>
 
@@ -23,6 +22,5 @@ get_header();
 </div>
 
 <?php
-include 'footer.php';
-//get_sidebar( 'content-bottom');
+get_footer();
 ?>
