@@ -796,3 +796,12 @@ function afdeling_query_vars($afdVars){
 	return $afdVars;
 }
 add_filter('query_vars', 'afdeling_query_vars');
+
+
+//Stylesheet stuff
+
+function enqueue_css() {
+	wp_enqueue_style('medarbejder',get_stylesheet_uri().'/css/medarbejder.css', false, null, true);
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_css');
