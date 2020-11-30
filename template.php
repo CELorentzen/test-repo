@@ -128,7 +128,7 @@ get_header();
                           echo '<div class="text title">' . get_the_title() . '</div>';
                           echo '<div class="text">' . get_field('stilling', $postID, false) . '</div>';
                           echo '<div class="hiddenInfo">';
-                            echo '<div class="text">+45 ' . substr( get_field('telefon', $postID, false),0,4 ) . " " . substr( get_field('telefon', $postID, false),0,4 ) . '</div>';
+                            echo '<div class="text">+45 ' . substr( get_field('telefon', $postID, false),0,4 ) . " " . substr( get_field('telefon', $postID, false),4,4 ) . '</div>';
                           echo '</div>';
                         echo '</div>';
                       echo '</div>';
