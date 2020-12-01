@@ -789,7 +789,7 @@ function twentytwenty_get_elements_array() {
  }
  add_action ( 'init', 'CPT_medarbejdere');
 
-//Dropdown functionality
+//Dropdown and Append functionality
 
 function afdeling_query_vars($afdVars){
 	$afdVars[] .= 'afdeling';
