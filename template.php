@@ -153,7 +153,11 @@ get_header();
               }
               wp_reset_postdata();
             }
-            echo '<div class="footerContainer">';
+            
+            }
+          }
+
+          echo '<div class="footerContainer">';
               echo '<div class= footerContainerLeft>';
                 echo '<div class="footerText footerHead">Er du i tvivl?</div>';
                 echo '<div class=footerText>Er du i tvivl eller har du spørgsmål til vores produkter, er du mere end velkommen til at kontakte os på tlf. eller mail.</div>';
@@ -173,8 +177,6 @@ get_header();
                 echo '</div>';
               echo '</div>';
             echo '</div>';
-        }
-      }
         ?>
 
     </main>
