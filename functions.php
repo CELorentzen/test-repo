@@ -797,6 +797,11 @@ function afdeling_query_vars($afdVars){
 }
 add_filter('query_vars', 'afdeling_query_vars');
 
+function udlejning_query_vars($udlejVars){
+	$udlejVars[] .= 'afdeling';
+	return $udlejVars;
+}
+add_filter('query_vars', 'udlejning_query_vars');
 
 //Stylesheet stuff
 

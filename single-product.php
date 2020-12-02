@@ -1,5 +1,3 @@
-<?php /* Template Name: OPUdlejningTemplate */ ?>
-
 <?php
 /**
  * The Template for displaying all single products
@@ -33,14 +31,19 @@ get_header( 'shop' ); ?>
 		do_action( 'woocommerce_before_main_content' );
 	?>
 
-		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
-
-			<?php wc_get_template_part( 'content', 'single-product' ); ?>
-
-		<?php endwhile; // end of the loop. ?>
-
-
+		<?php while ( have_posts() ) {
+				the_post();
+				$productCatArray = get_the_terms( $post->ID, 'product_cat' );
+				//var_dump($productCatArray); //Find out what the product_cat acutally contains
+				$productCat = $productCatArray[0]->slug;
+				
+				if( $productCat == 'udlejning' ){
+					wc_get_template_part( 'udlejning', 'single-product' );
+				} else {
+					wc_get_template_part( 'content', 'single-product' );
+				}
+			}
+		?>
 
 	<?php
 		/**
