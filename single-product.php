@@ -36,7 +36,7 @@ get_header( 'shop' ); ?>
 				$productCatArray = get_the_terms( $post->ID, 'product_cat' );
 				//var_dump($productCatArray); //Find out what the product_cat acutally contains
 				$productCat = $productCatArray[0]->slug;
-				
+
 				if( $productCat == 'udlejning' ){
 					wc_get_template_part( 'udlejning', 'single-product' );
 				} else {
@@ -52,15 +52,6 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
 		 */
 		do_action( 'woocommerce_after_main_content' );
-	?>
-
-	<?php
-		/**
-		 * woocommerce_sidebar hook.
-		 *
-		 * @hooked woocommerce_get_sidebar - 10
-		 */
-		do_action( 'woocommerce_sidebar' );
 	?>
 
 <?php

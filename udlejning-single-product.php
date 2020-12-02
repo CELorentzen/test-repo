@@ -73,4 +73,13 @@ if ( post_password_required() ) {
 	?>
 </div>
 
+<div class="price listing">
+        <?php
+        $tilbud = get_field('tilbudToggle');
+        echo '<div> Daglig Pris: ' . get_field('dagligPris', $postID, false) . 'DKK </div>';
+        echo '<div> Ugentlig Pris: ' . get_field('ugentligPris', $postID, false) . 'DKK </div>';
+        echo '<div> Månedlig Pris: ' . get_field('maanedligPris', $postID, false) . 'DKK </div>';
+        ?>
+    </div>
+
 <?php do_action( 'woocommerce_after_single_product' ); ?>
