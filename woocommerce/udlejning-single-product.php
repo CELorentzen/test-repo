@@ -61,89 +61,17 @@ if ( post_password_required() ) {
 		?>
 	</div>
 
-<!-- Price Listing -->
-
-<div class="priceContainer">
-	<div class="priceListing">
-			<?php
-				$tilbud = get_field('tilbudToggle', $postID, false);
-				//Check if the product is on sale
-				if ( $tilbud = 0 ){
-					echo '<div class="price"> Daglig Pris: ' . get_field('dagligPris', $postID, false) . ' DKK </div>';
-					echo '<div class="price"> Ugentlig Pris: ' . get_field('ugentligPris', $postID, false) . ' DKK </div>';
-					echo '<div class="price"> Månedlig Pris: ' . get_field('maanedligPris', $postID, false) . ' DKK </div>';
-				}else{
-					//Check if there's a sale on the daily price
-					if ( get_field('dagligTilbud', $postID, false) != ''){
-						echo '<div class="price"> Daglig Pris: ';
-							echo '<div class="priceOriginal"> ' . get_field('dagligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('dagligTilbud', $postID, false) . ' DKK </div>';
-							echo '</div>';
-					}else{echo '<div class="price"> Daglig Pris: ' . get_field('dagligPris', $postID, false) . ' DKK </div>';}
-					
-					//Check if there's a sale on the weekly price
-					if ( get_field('ugentligTilbud', $postID, false) != ''){
-						echo '<div class="price"> Ugentlig Pris: ';
-							echo '<div class="priceOriginal"> ' . get_field('ugentligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('ugentligTilbud', $postID, false) . ' DKK </div>';
-							echo '</div>';
-					}else{echo '<div class="price"> Ugentlig Pris: ' . get_field('ugentligPris', $postID, false) . ' DKK </div>';}
-					
-					//Check if there's a sale on the monthly price
-					if ( get_field('maanedligTilbud', $postID, false) != ''){
-						echo '<div class="price"> Månedlig Pris: ';
-							echo '<div class="priceOriginal" >' . get_field('maanedligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('maanedligTilbud', $postID, false) . ' DKK </div>';
-							echo '</div>';
-					}else{echo '<div class="price"> Månedlig Pris: ' . get_field('maanedligPris', $postID, false) . ' DKK </div>';}
-				}
-			?>
-		</div>
-
-	<!-- Udlejnings Form -->
-
-		<div class="udlejningForm">
-				<form method="POST">
-					Navn: <input type="text" name="formName"><br>
-					Telefon nummer: <input type="number" name="formPhone"><br>
-					E-mail adresse: <input type="email" name="formMail"><br>
-					<input type="submit" name="formSubmit"><br>
-				</form>
-		</div>
-
-		<?php if (!empty($_POST['formName']) && !empty($_POST['formPhone'] && !empty($_POST['formMail']))){
-		echo '<div class="formReciever">';
-			echo '<div class="formOutput">Du har sendt en forespørgsel fra ' . $_POST['formMail'] . ' og ' . $_POST['formPhone'] . '.</div>';
-			echo '<div class="formOutput">Du har sendt en foresprøgsel på følgende produkt:</div>';
-			echo '<div class="formOutput">' . $product->get_title() . '</div>';
-			echo '<div class="formOutput">' . $product->get_categories() . '</div>';
-			echo '<div class="formOutput">Til priserne:';
-			//Check for daily sale
-			if ($tilbud = 1 && get_field('dagligTilbud') != 0) {echo'<div class="formOutput">' . get_field('dagligTilbud', $postID, false) . ' DKK dagligt </div>';}
-			else {echo '<div class="formOutput">' . get_field('dagligPris', $postID, false) . ' DKK dagligt </div>';}
-			//Check for weekly sale
-			if ($tilbud = 1 && get_field('ugentligTilbud') != 0) {echo'<div class="formOutput">' . get_field('ugentligTilbud', $postID, false) . ' DKK dagligt </div>';}
-			else {echo '<div class="formOutput">' . get_field('ugentligPris', $postID, false) . ' DKK ugenligt </div>';}
-			//Check for monthly sale
-			if ($tilbud = 1 && get_field('maanedligTilbud') != 0) {echo'<div class="formOutput">' . get_field('maanedligTilbud', $postID, false) . ' DKK dagligt </div>';}
-			else {echo '<div class="formOutput">' . get_field('maanedligPris', $postID, false) . ' DKK månedligt </div>';}
-
-			echo 'Forespørgslen er sendt på følgende dato: ' . date('d/m/y');
-		echo '</div>';
-		}
-		?>
-</div>
 	<?php
 	/**
 	 * Hook: woocommerce_after_single_product_summary.
 	 *
 	 * @hooked woocommerce_output_product_data_tabs - 10
+	 * @hooked woocommerce_single_product_info - 12
 	 * @hooked woocommerce_upsell_display - 15
 	 * @hooked woocommerce_output_related_products - 20
 	 */
 	do_action( 'woocommerce_after_single_product_summary' );
 	?>
 </div>
-
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>
