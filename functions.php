@@ -828,9 +828,11 @@ add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
 function single_product_info_listing(){
 
-	global $product;
+	global $post, $product;
 
 	//Price Listing
+
+	if ( has_term('udlejning', 'product_cat') ){
 	?>
 <div class="priceContainer">
 	<div class="priceListing">
@@ -903,6 +905,7 @@ function single_product_info_listing(){
 		?>
 </div>
 <?php
+	}
 }
 
 add_action('woocommerce_after_single_product_summary','single_product_info_listing', 12);
