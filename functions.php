@@ -810,3 +810,15 @@ function enqueue_css() {
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_css');
+
+//Enable WooCommerce Theme override
+
+/*
+ *This is technically not necessary, but without it, all WooCommerce files would have to be placed in the rootfolder.
+ *Due to how WooCommerce's Description.php is programmed, not doing this will also result in the Description field loading a copy of the entire page instead of just the product description.
+ */
+function mytheme_add_woocommerce_support() {
+	add_theme_support( 'woocommerce' );
+}
+
+add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
