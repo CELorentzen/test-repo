@@ -1,7 +1,7 @@
 <?php /* Template Name: OPTilbudTemplate */ ?>
 
 <?php
-include 'header.php';
+get_header('shop');
 ?>
 
 <div id="primary" class="content-area">
@@ -20,5 +20,5 @@ include 'header.php';
 </div>
 
 <?php
-include 'footer.php';
+get_footer('shop');
 ?>

@@ -1,0 +1,33 @@
+.price{
+	padding: 5px;
+}
+
+.priceOriginal{
+	text-decoration: line-through;
+	color: red;
+	display: inline;
+}
+
+.priceNew{
+    display: inline;
+}
+
+.priceHeader{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.priceContainer{
+	margin: 10%;
+	display: grid;
+	grid-template-columns: repeat(4, 400px);
+	grid-gap: 15px;
+	padding: 15px;
+}
+
+.formReceiver{
+	grid-column-start: 3;
+	grid-column-end: 5;
+	padding-left: 15px;
+}
+

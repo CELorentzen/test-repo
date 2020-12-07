@@ -811,6 +811,12 @@ function enqueue_css() {
 
 add_action('wp_enqueue_scripts', 'enqueue_css');
 
+function enqueue_udlejning(){
+	wp_enqueue_style('medarbejder',get_stylesheet_directory_uri().'/css/udlejning.css', false, null, 'all');
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_udlejning');
+
 //Enable WooCommerce Theme override
 
 /*
@@ -838,6 +844,7 @@ function single_product_info_listing(){
 	<div class="priceListing">
 			<?php
 				$tilbud = get_field('tilbudToggle', $postID, false);
+				echo '<div class="priceHeader">Udlejningspriser:</div>';
 				//Check if the product is on sale
 				if ( $tilbud = 0 ){
 					echo '<div class="price"> Daglig Pris: ' . get_field('dagligPris', $postID, false) . ' DKK </div>';
@@ -848,7 +855,7 @@ function single_product_info_listing(){
 					if ( get_field('dagligTilbud', $postID, false) != ''){
 						echo '<div class="price"> Daglig Pris: ';
 							echo '<div class="priceOriginal"> ' . get_field('dagligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('dagligTilbud', $postID, false) . ' DKK </div>';
+							echo '<div class="priceNew"> ' . get_field('dagligTilbud', $postID, false) . ' DKK </div>';
 							echo '</div>';
 					}else{echo '<div class="price"> Daglig Pris: ' . get_field('dagligPris', $postID, false) . ' DKK </div>';}
 					
@@ -856,7 +863,7 @@ function single_product_info_listing(){
 					if ( get_field('ugentligTilbud', $postID, false) != ''){
 						echo '<div class="price"> Ugentlig Pris: ';
 							echo '<div class="priceOriginal"> ' . get_field('ugentligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('ugentligTilbud', $postID, false) . ' DKK </div>';
+							echo '<div class="priceNew"> ' . get_field('ugentligTilbud', $postID, false) . ' DKK </div>';
 							echo '</div>';
 					}else{echo '<div class="price"> Ugentlig Pris: ' . get_field('ugentligPris', $postID, false) . ' DKK </div>';}
 					
@@ -864,7 +871,7 @@ function single_product_info_listing(){
 					if ( get_field('maanedligTilbud', $postID, false) != ''){
 						echo '<div class="price"> Månedlig Pris: ';
 							echo '<div class="priceOriginal" >' . get_field('maanedligPris', $postID, false) . ' </div>';
-							echo '<div class="price"> ' . get_field('maanedligTilbud', $postID, false) . ' DKK </div>';
+							echo '<div class="priceNew"> ' . get_field('maanedligTilbud', $postID, false) . ' DKK </div>';
 							echo '</div>';
 					}else{echo '<div class="price"> Månedlig Pris: ' . get_field('maanedligPris', $postID, false) . ' DKK </div>';}
 				}
@@ -878,12 +885,12 @@ function single_product_info_listing(){
 					Navn: <input type="text" name="formName"><br>
 					Telefon nummer: <input type="number" name="formPhone"><br>
 					E-mail adresse: <input type="email" name="formMail"><br>
-					<input type="submit" name="formSubmit"><br>
+					<input type="submit" name="formSubmit" value="Send Forespørgsel"><br>
 				</form>
 		</div>
 
 		<?php if (!empty($_POST['formName']) && !empty($_POST['formPhone'] && !empty($_POST['formMail']))){
-		echo '<div class="formReciever">';
+		echo '<div class="formReceiver">';
 			echo '<div class="formOutput">Du har sendt en forespørgsel fra ' . $_POST['formMail'] . ' og ' . $_POST['formPhone'] . '.</div>';
 			echo '<div class="formOutput">Du har sendt en foresprøgsel på følgende produkt:</div>';
 			echo '<div class="formOutput">' . $product->get_title() . '</div>';
